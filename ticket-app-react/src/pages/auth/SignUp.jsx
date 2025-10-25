@@ -2,25 +2,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// notification instance
+const notyf = new Notyf({ duration: 5000 });
+
 export default function SignupForm() {
+  const emptyForm = {
+    userName: "",
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
   // Manage form state
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [formData, setFormData] = useState(emptyForm);
 
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [errors, setErrors] = useState(emptyForm);
 
-  const nav = useNavigate()
-  // notification instance
-  const notyf = new Notyf({ duration: 5000 });
+  const nav = useNavigate();
 
   // Handle input change + clear error
   const handleChange = (e) => {
@@ -31,18 +29,20 @@ export default function SignupForm() {
 
   // Validation function
   const validate = () => {
-    const newErrors = {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    };
+    const newErrors = emptyForm;
 
-    // Name
-    if (!formData.name.trim()) {
-      newErrors.name = "Full Name is required";
-    } else if (!/^[A-Za-z\s]+$/.test(formData.name)) {
-      newErrors.name = "Only letters and spaces allowed";
+    // user name
+    if (!formData.userName.trim()) {
+      newErrors.userName = "User Name is required";
+    } else if (!/^[A-Za-z0-9_-]+$/.test(formData.userName)) {
+      newErrors.userName =
+        "Only letters, numbers, underscores, and hyphens allowed";
+    }
+    // full name
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full Name is required";
+    } else if (!/^[A-Za-z\s]+$/.test(formData.fullName)) {
+      newErrors.fullName = "Only letters and spaces allowed";
     }
 
     // Email
@@ -73,32 +73,44 @@ export default function SignupForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (validate()) {
       const user = {
         id: crypto.randomUUID(), // unique id
-        name: formData.name,
+        fullName: formData.fullName,
+        userName: formData.userName,
         email: formData.email,
+        password: formData.password,
         createdAt: new Date().toISOString(),
       };
+      // get existing users (if they exist)
+      const existingUsers = JSON.parse(
+        localStorage.getItem("ticketapp_users") || "[]"
+      );
+
+      const emailExists = existingUsers.some((u) => u.email === formData.email);
+
+      if (emailExists) {
+        notyf.error("Email already registered!");
+        setErrors((prev) => ({
+          ...prev,
+          email: "This email is already in use",
+        }));
+        return;
+      }
+      // else
+      // store new user
+      existingUsers.push(user);
+
+      localStorage.setItem("ticketapp_users", JSON.stringify(existingUsers));
       console.log("Signup successful:", user);
 
-      localStorage.setItem("ticketapp_users", JSON.stringify(user));
       notyf.success("Account created successfully!");
       // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-      setErrors({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+      setFormData(emptyForm);
+      setErrors(emptyForm);
       setTimeout(() => {
-        nav("/auth/login")
+        nav("/auth/login");
       }, 3000);
     } else {
       // Display an info toast with no title
@@ -118,38 +130,71 @@ export default function SignupForm() {
           Create Your Account
         </h2>
 
-        <div className="space-y-5 mb-6">
-          {/* Full Name */}
+        <div className="space-y-1 mb-3">
+          {/* User Name */}
           <div className="form-group">
             <label
-              htmlFor="name"
+              htmlFor="userName"
               className="block text-sm font-medium text-[var(--primary-300)] mb-1"
             >
-              Full Name <span className="text-red-500">*</span>
+              User Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              id="name"
-              value={formData.name}
+              id="userName"
+              value={formData.userName}
               onChange={handleChange}
               pattern="[A-Za-z\s]+"
               required
-              aria-describedby="error-name"
-              data-testid="test-signup-name"
+              aria-describedby="error-userName"
+              data-testid="test-signup-userName"
               className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition ${
-                errors.name
+                errors.userName
                   ? "border-red-500 focus:ring-red-500"
                   : "border-gray-300"
               }`}
               placeholder="John Doe"
             />
             <span
-              id="error-name"
-              data-testid="test-signup-error-name"
+              id="error-userName"
+              data-testid="test-signup-error-userName"
               className="error text-red-500 text-sm mt-1 block min-h-5"
               role="alert"
             >
-              {errors.name}
+              {errors.userName}
+            </span>
+          </div>
+          {/* Full Name */}
+          <div className="form-group">
+            <label
+              htmlFor="fullName"
+              className="block text-sm font-medium text-[var(--primary-300)] mb-1"
+            >
+              Full Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              pattern="[A-Za-z\s]+"
+              required
+              aria-describedby="error-fullName"
+              data-testid="test-signup-fullName"
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition ${
+                errors.fullName
+                  ? "border-red-500 focus:ring-red-500"
+                  : "border-gray-300"
+              }`}
+              placeholder="John Doe"
+            />
+            <span
+              id="error-fullName"
+              data-testid="test-signup-error-fullName"
+              className="error text-red-500 text-sm mt-1 block min-h-5"
+              role="alert"
+            >
+              {errors.fullName}
             </span>
           </div>
 
@@ -207,7 +252,7 @@ export default function SignupForm() {
                   ? "border-red-500 focus:ring-red-500"
                   : "border-gray-300"
               }`}
-              placeholder="••••••••"
+              placeholder="••••"
             />
             <span
               id="error-password"
@@ -240,7 +285,7 @@ export default function SignupForm() {
                   ? "border-red-500 focus:ring-red-500"
                   : "border-gray-300"
               }`}
-              placeholder="••••••••"
+              placeholder="••••"
             />
             <span
               id="error-confirmPassword"

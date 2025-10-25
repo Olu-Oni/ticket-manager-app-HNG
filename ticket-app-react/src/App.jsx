@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 import { LayoutWrapper } from "./components/layoutWrapper";
 import SignUp from "./pages/auth/SignUp";
 import Login from "./pages/auth/Login";
+import Tickets from "./pages/Tickets";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,9 +20,24 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth">
             <Route index path="login" element={<Login />} />
-            <Route index path="signup" element={<SignUp />} />
+            <Route path="signup" element={<SignUp />} />
           </Route>
-          <Route path="dashboard" element={<Dashboard />}/>
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="tickets"
+            element={
+              <ProtectedRoute>
+                <Tickets />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </div>

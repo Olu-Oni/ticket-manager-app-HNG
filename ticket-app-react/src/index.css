@@ -17,7 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* custom */
-  --text: #040316;
+  --text-color: #5c5969;
   --background: #fbfbfe;
   --primary: #1e1b4b;
   --secondary: #dddbff;
@@ -58,6 +58,7 @@ a {
   font-weight: 500;
   color: var(--primary-light);
   text-decoration: inherit;
+  cursor: pointer;
 }
 a:hover {
   color: var(--accent-hover);
@@ -66,9 +67,24 @@ a:hover {
 
 h1{
   color: var(--primary);
+  @apply text-5xl md:text-6xl font-bold;
 }
 h2{
   color: var(--primary-light);
+  @apply text-2xl font-bold;
+}
+
+h3{
+  color: var(--primary);
+  font-weight: 700;
+  @apply text-xl font-bold;
+}
+h4{
+  color: var(--primary);
+  font-weight: 700;
+}
+p{
+  color: var(--text-color)
 }
 body {
   margin: 0;
@@ -76,11 +92,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -102,9 +113,7 @@ button {
   /* background-color: var(--secondary); */
   @apply bg-[var(--secondary)] hover:bg-[var(--primary)]  text-[var(--primary)] hover:text-[var(--secondary)];
 }
-/* button:hover {
-  border-color: var(--accent-hover);
-} */
+
 button:focus,
 button:focus-visible {
   outline: 4px solid var(--accent-hover);
@@ -128,7 +137,7 @@ footer {
   overflow: hidden;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -139,4 +148,4 @@ footer {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

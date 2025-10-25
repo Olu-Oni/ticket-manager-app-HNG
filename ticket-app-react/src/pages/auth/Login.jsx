@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../utils/auth";
 
+// notification instance
+const notyf = new Notyf({ duration: 5000 });
 
 const Login = () => {
   // Manage form state
@@ -10,15 +13,11 @@ const Login = () => {
   });
 
   const [errors, setErrors] = useState({
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const nav = useNavigate();
-  // notification instance
-  const notyf = new Notyf({ duration: 5000 });
 
   // Handle input change + clear error
   const handleChange = (e) => {
@@ -27,47 +26,64 @@ const Login = () => {
     setErrors((prev) => ({ ...prev, [id]: "" })); // Clear error on type
   };
 
-  const authenticate = () => {
-    return null;
+  // Validation function
+  const validate = () => {
+    const newErrors = {
+      email: "",
+      password: "",
+    };
+
+    // Email
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    }
+    // Password: min 4 chars, 1 letter, 1 number
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    }
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).every((err) => err === "");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (authenticate()) {
-      localStorage.setItem("ticketapp_users", JSON.stringify(user));
-      notyf.success("Log in successfull !");
+
+    if (!validate()) {
+      notyf.error("login failed: missing email/password");
+      return;
+    }
+    const loginInfo = login(formData.email, formData.password);
+    if (loginInfo.success) {
+      notyf.success(loginInfo.message);
       // Reset form
       setFormData({
-        name: "",
         email: "",
         password: "",
-        confirmPassword: "",
       });
       setErrors({
-        name: "",
         email: "",
         password: "",
-        confirmPassword: "",
       });
       setTimeout(() => {
-        nav("/auth/login");
-      }, 3000);
+        nav("/dashboard");
+      }, 1500);
     } else {
       // Display an info toast with no title
-      notyf.error("Sign-up Unsecessful!");
+      notyf.error(loginInfo.message);
     }
   };
 
   return (
     <div className="w-full bg-[var(--background)] place-content-center text-left">
       <form
-        id="signupForm"
+        id="loginForm"
         noValidate
         onSubmit={handleSubmit}
         className="max-w-md my-4 mx-auto p-6 bg-transparent border-3 border-[var(--secondary)] bg rounded-xl shadow-lg"
       >
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Log In
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Log In</h2>
 
         <div className="space-y-5 mb-6">
           {/* Email */}
@@ -85,7 +101,7 @@ const Login = () => {
               onChange={handleChange}
               required
               aria-describedby="error-email"
-              data-testid="test-signup-email"
+              // data-testid="test-login-email"
               className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition ${
                 errors.email
                   ? "border-red-500 focus:ring-red-500"
@@ -95,7 +111,7 @@ const Login = () => {
             />
             <span
               id="error-email"
-              data-testid="test-signup-error-email"
+              // data-testid="test-login-error-email"
               className="error text-red-500 text-sm mt-1 block min-h-5"
               role="alert"
             >
@@ -118,7 +134,7 @@ const Login = () => {
               onChange={handleChange}
               required
               aria-describedby="error-password"
-              data-testid="test-signup-password"
+              // data-testid="test-login-password"
               className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition ${
                 errors.password
                   ? "border-red-500 focus:ring-red-500"
@@ -128,7 +144,7 @@ const Login = () => {
             />
             <span
               id="error-password"
-              data-testid="test-signup-error-password"
+              // data-testid="test-login-error-password"
               className="error text-red-500 text-sm mt-1 block min-h-5"
               role="alert"
             >
@@ -140,15 +156,18 @@ const Login = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          data-testid="test-signup-submit"
+          data-testid="test-login-submit"
           className="w-full btn-2"
         >
           Log in
         </button>
 
         <p className="text-sm mt-4 text-center">
-          Don't have have an account?{" "}
-          <a href="/auth/signup" className="hover:underline font-medium text-nowrap">
+          Don't have an account?{" "}
+          <a
+            href="/auth/signup"
+            className="hover:underline font-medium text-nowrap"
+          >
             create a new account
           </a>
         </p>
