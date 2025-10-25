@@ -1,4 +1,3 @@
-
 const AUTH_KEY = "ticketapp_session";
 const AUTH_USER = "ticketapp_users";
 
@@ -42,11 +41,17 @@ export const login = (email, password) => {
   return { success: false, message: "Incorrect password" };
 };
 
-export const logout = () => {
+export const logout = (navigate) => {
   if (window.confirm("Are you sure you want to log out?")) {
-    localStorage.removeItem(AUTH_KEY);
-    return true
+    try {
+      localStorage.removeItem(AUTH_KEY);
+      navigate("/");
+      return true; // Indicate success
+    } catch (error) {
+      return false; // Indicate failure
+    }
   }
+  return false; // User canceled logout
 };
 
 export const isAuthenticated = () => {
