@@ -38,22 +38,22 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="bg-[var(--secondary)]">
+    <>
       {/* Header with Logout */}
 
       <Header user={user} page={"Dashboard"} />
       {/* Main Dashboard Content */}
-      <main className="mx-auto px-6 py-8 flex flex-col">
+      <main className="mx-[5%] py-8 flex flex-col ">
         {/* Welcome Section */}
-        <div className="mb-8">
+        <section className="mb-8 ">
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             Welcome back, {user?.name || "User"}! 👋
           </h2>
           <p>Here's an overview of your ticket management system</p>
-        </div>
+        </section>
 
         {/* Statistics Section */}
-        <section className="grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 pb-6 text-nowrap">
+        <section className="grow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 pb-6 text-nowrap ">
           {/* Total Tickets */}
           <div className="bg-[var(--background)] rounded-2xl p-6 shadow-lg hover:shadow-xl transition">
             <div className="flex items-center justify-between ">
@@ -159,112 +159,10 @@ const Dashboard = () => {
           </div>
         </section>
 
-        {/* Quick Actions */}
-        {/* <section className="bg-[var(--background)] rounded-2xl p-8 shadow-lg mb-8">
-          <h2 className=" mb-6">Quick Actions</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <button
-              onClick={() => navigate("/tickets")}
-              className="p-6 bg-linear-to-br from-indigo-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition transform hover:-translate-y-1 text-left"
-            >
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-lg mb-1">Create New Ticket</h3>
-              <p className="text-sm text-white/80">
-                Add a new ticket to the system
-              </p>
-            </button>
-
-            <button
-              onClick={() => navigate("/tickets")}
-              className="p-6 bg-gradient-to-br from-green-500 to-teal-600 text-white rounded-xl hover:shadow-lg transition transform hover:-translate-y-1 text-left"
-            >
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-1">View All Tickets</h3>
-              <p className="text-sm text-white/80">Manage existing tickets</p>
-            </button>
-
-            <button
-              onClick={() => navigate("/tickets?filter=open")}
-              className="p-6 bg-gradient-to-br from-amber-500 to-orange-600 text-white rounded-xl hover:shadow-lg transition transform hover:-translate-y-1 text-left"
-            >
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-1">Pending Tickets</h3>
-              <p className="text-sm text-white/80">
-                View tickets needing attention
-              </p>
-            </button>
-          </div>
-        </section> */}
-
         {/* Info Section */}
         <section className=" bg-linear-to-r from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-200">
           <div className="flex place-items-center gap-4">
-            {/* <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <svg
-                className="w-6 h-6 text-indigo-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </div> */}
-            {/* <div> */}
-            {/* <h4 className="font-semibold text-gray-800 mb-2">
-                Getting Started
-              </h4>
-              <p className="text-gray-600 text-sm mb-3">
-                Click on "View All Tickets" to manage your tickets, or use
-                "Create New Ticket" to add a new one. You can edit, delete, and
-                update the status of tickets at any time.
-              </p> */}
+            
             <a
               onClick={() => navigate("/tickets")}
               className="flex gap-4 items-center mx-auto"
@@ -288,7 +186,7 @@ const Dashboard = () => {
           </div>
         </section>
       </main>
-    </div>
+    </>
   );
 };
 

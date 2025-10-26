@@ -30,6 +30,8 @@ const Tickets = () => {
     description: "",
   });
 
+  
+  console.log('tickets rendered')
   useEffect(() => {
     notyf.open({
       type: "info",
@@ -109,7 +111,6 @@ const Tickets = () => {
     return Object.values(newErrors).every((err) => err === "");
   };
 
-  console.log(errors)
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) {
@@ -176,10 +177,10 @@ const Tickets = () => {
   };
 
   return (
-    <div className="bg-[var(--secondary)]">
+    <>
       <Header user={user} page={"Ticket Management"} />
 
-      <main className="mx-auto px-6 py-4 pb-12">
+      <main className="mx-[5%] py-4 pb-12">
         <div className="flex justify-between items-center mb-6 p-1.5">
           <div className="sm:flex-1 sm:ml-50 flex gap-2 place-content-center">
             <h3 className=" w-fit   py-1 max-sm:hidden">Total:</h3>
@@ -390,7 +391,7 @@ const Tickets = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

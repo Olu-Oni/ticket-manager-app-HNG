@@ -35,9 +35,12 @@
 
 #root {
   max-width: 1440px;
+  min-height: 100dvh;
+
   width: var(--container-max-width);
   margin: 0 auto;
   text-align: center;
+  @apply flex flex-col bg-indigo-50;
 }
 
 /* .page {
@@ -65,26 +68,26 @@ a:hover {
   clip-path: ;
 }
 
-h1{
+h1 {
   color: var(--primary);
   @apply text-5xl md:text-6xl font-bold;
 }
-h2{
+h2 {
   color: var(--primary-light);
   @apply text-2xl font-bold;
 }
 
-h3{
+h3 {
   color: var(--primary);
   font-weight: 700;
   @apply text-xl font-bold;
 }
-h4{
+h4 {
   color: var(--primary);
   font-weight: 700;
 }
-p{
-  color: var(--text-color)
+p {
+  color: var(--text-color);
 }
 body {
   margin: 0;
@@ -105,8 +108,8 @@ button {
 .btn-1 {
   padding: 0.6em 1.2em;
   background-color: var(--primary);
- color: var(--background);
- @apply  bg-[var(--primary)] hover:bg-[var(--secondary)] text-[var(--secondary)] hover:text-[var(--primary)];
+  color: var(--background);
+  @apply bg-[var(--primary)] hover:bg-[var(--secondary)] text-[var(--secondary)] hover:text-[var(--primary)];
 }
 .btn-2 {
   padding: 0.6em 1.2em;

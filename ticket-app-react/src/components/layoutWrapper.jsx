@@ -4,12 +4,12 @@ import Footer from "./footer";
 // Layout components with Outlet
 const LayoutWrapper = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex flex-col grow">
+    <>
+      {/* <main className="flex flex-col grow"> */}
         <Outlet />
-      </main>
+      {/* </main> */}
       <Footer />
-    </div>
+    </>
   );
 };
 

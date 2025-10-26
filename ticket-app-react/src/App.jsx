@@ -13,7 +13,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between">
+    <>
       <Routes>
         {/* route for footer */}
         <Route element={<LayoutWrapper />}>
@@ -40,7 +40,7 @@ function App() {
           />
         </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 

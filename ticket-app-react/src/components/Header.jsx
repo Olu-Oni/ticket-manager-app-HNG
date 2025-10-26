@@ -21,6 +21,7 @@ const Header = ({ user, page }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  console.log('header rendered')
   return (
     <header className="bg-white shadow-md">
       <div className="mx-auto px-6 py-2.5 flex justify-between items-center">

@@ -5,10 +5,10 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-indigo-50">
-      {/* Navigation */}
-      <div className="min-h-screen relative flex flex-col">
-        <nav className="w-full mx-auto px-6 py-4 flex justify-between items-center">
+    <>
+      {/* header & hero section */}
+      <section className="min-h-screen relative flex flex-col">
+        <header className="w-full mx-auto px-6 py-4 flex justify-between items-center">
           <h2 className=" ">TicketsPlease</h2>
           <button
             onClick={() => navigate("/auth/login")}
@@ -16,21 +16,7 @@ const LandingPage = () => {
           >
             Login
           </button>
-          {/* <div className="flex gap-4">
-          <button
-            onClick={() => navigate("/auth/login")}
-            className="px-6 py-2 text-indigo-600 hover:text-indigo-800 font-medium transition"
-          >
-            Login
-          </button>
-          <button
-            onClick={() => navigate("/auth/signup")}
-            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition shadow-md"
-          >
-            Get Started
-          </button>
-        </div> */}
-        </nav>
+        </header>
 
         {/* Hero Section with Wavy Background */}
         <section
@@ -66,7 +52,7 @@ const LandingPage = () => {
         <div className="wavy-bg">
           <WavyBg />
         </div>
-      </div>
+      </section>
 
       {/* wavy bg */}
 
@@ -163,7 +149,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
