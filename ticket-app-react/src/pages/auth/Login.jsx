@@ -76,7 +76,7 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full bg-[var(--background)] place-content-center text-left">
+    <main className="w-full bg-[var(--background)] place-content-center text-left grow">
       <form
         id="loginForm"
         noValidate
@@ -172,7 +172,7 @@ const Login = () => {
           </a>
         </p>
       </form>
-    </div>
+    </main>
   );
 };
 

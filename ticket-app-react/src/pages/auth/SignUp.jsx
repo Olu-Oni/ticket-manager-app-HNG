@@ -119,8 +119,8 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="w-full bg-[var(--background)] place-content-center text-left">
-      <form
+    <main className="w-full bg-[var(--background)] place-content-center text-left grow">
+       <form
         id="signupForm"
         noValidate
         onSubmit={handleSubmit}
@@ -314,6 +314,6 @@ export default function SignupForm() {
           </a>
         </p>
       </form>
-    </div>
+    </main>
   );
 }
