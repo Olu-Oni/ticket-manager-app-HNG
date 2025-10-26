@@ -1,54 +1,58 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Landing from '../views/Landing.vue'
-import Login from '../views/Login.vue'
-import Signup from '../views/Signup.vue'
-import Dashboard from '../views/Dashboard.vue'
-import Tickets from '../views/Tickets.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import Landing from "../views/Landing.vue";
+import Login from "../views/Login.vue";
+import Signup from "../views/Signup.vue";
+import Dashboard from "../views/Dashboard.vue";
+import Tickets from "../views/Tickets.vue";
+
+// Initialize Notyf
+const notyf = new Notyf({ duration: 5000 });
 
 const routes = [
   {
-    path: '/',
-    name: 'Landing',
-    component: Landing
+    path: "/",
+    name: "Landing",
+    component: Landing,
   },
   {
-    path: '/auth/login',
-    name: 'Login',
-    component: Login
+    path: "/auth/login",
+    name: "Login",
+    component: Login,
   },
   {
-    path: '/auth/signup',
-    name: 'Signup',
-    component: Signup
+    path: "/auth/signup",
+    name: "Signup",
+    component: Signup,
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
+    path: "/dashboard",
+    name: "Dashboard",
     component: Dashboard,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
   {
-    path: '/tickets',
-    name: 'Tickets',
+    path: "/tickets",
+    name: "Tickets",
     component: Tickets,
-    meta: { requiresAuth: true }
-  }
-]
+    meta: { requiresAuth: true },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
 // Protected routes guard
 router.beforeEach((to, from, next) => {
-  const session = localStorage.getItem('ticketapp_session')
-  
-  if (to.meta.requiresAuth && !session) {
-    next('/auth/login')
-  } else {
-    next()
-  }
-})
+  const session = localStorage.getItem("ticketapp_session");
 
-export default router
+  if (to.meta.requiresAuth && !session) {
+    next("/auth/login");
+    notyf.error("Your session has expired <br/> Please log in again.");
+  } else {
+    next();
+  }
+});
+
+export default router;

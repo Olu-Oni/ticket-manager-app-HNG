@@ -33,7 +33,7 @@
   --btn-bg: #1a1a1a;
 }
 
-#root {
+#app {
   max-width: 1440px;
   min-height: 100dvh;
 

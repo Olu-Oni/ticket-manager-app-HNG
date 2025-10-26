@@ -44,7 +44,7 @@ const LandingPage = () => {
                 onClick={() => navigate("/auth/signup")}
                 className="btn-1 px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl"
               >
-                Get Started Free
+                Get Started
               </button>
             </div>
           </div>
