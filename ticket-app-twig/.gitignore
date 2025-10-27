@@ -1,5 +1,6 @@
 # composer generated
 vendor/
+.env
 
 # Dependencies
 node_modules/
