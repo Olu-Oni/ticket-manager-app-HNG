@@ -11,4 +11,4 @@ port = 8000
 package = "@netlify/plugin-php"
 
 [context.production.environment]
-PHP_VERSION = "8.1.2"
+PHP_VERSION = "8.1"
