@@ -1,0 +1,6 @@
+{
+    "name": "olu/ticket-app-twig",
+    "require": {
+        "twig/twig": "^3.21"
+    }
+}

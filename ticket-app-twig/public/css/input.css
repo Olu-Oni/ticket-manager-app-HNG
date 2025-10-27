@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: #040316;
+    background-color: #242424;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Custom variables */
+    --text-color: #5c5969;
+    --background: #fbfbfe;
+    --primary: #1e1b4b;
+    --secondary: #dddbff;
+    --primary-light: #a5a0fd;
+    --accent: #22d3ee;
+    --accent-hover: #21eeee;
+
+    --container-max-width: 1440px;
+    --container-padding: 20px;
+    --section-spacing: 60px;
+    --card-spacing: 30px;
+    --btn-bg: #1a1a1a;
+}
+
+#app {
+    max-width: 1440px;
+    min-height: 100dvh;
+    width: var(--container-max-width);
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #eef2ff; /* indigo-50 equivalent */
+}
+
+main > * {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+}
+
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+a {
+    font-weight: 500;
+    color: var(--primary-light);
+    text-decoration: inherit;
+    cursor: pointer;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+h1 {
+    color: var(--primary);
+    font-size: 3rem; /* text-5xl */
+    font-size: 4rem; /* md:text-6xl */
+    font-weight: 700;
+}
+
+h2 {
+    color: var(--primary-light);
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700;
+}
+
+h3 {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.25rem; /* text-xl */
+}
+
+h4 {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+p {
+    color: var(--text-color);
+}
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+button, a.btn {
+    cursor: pointer;
+    border-radius: 0.5rem; /* 8px */
+    border: 3px solid transparent;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+}
+
+.btn-1 {
+    padding: 0.6em 1.2em;
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+.btn-1:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.btn-2 {
+    padding: 0.6em 1.2em;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.btn-2:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px solid var(--accent-hover);
+    outline-offset: 2px;
+}
+
+footer {
+    background-color: var(--primary);
+}
+
+.wavy-bg {
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}

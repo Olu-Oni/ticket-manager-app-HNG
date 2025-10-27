@@ -1,0 +1,14 @@
+[build]
+command = "composer install --no-dev --prefer-dist && npm install && npm run build:css"
+publish = "public"
+functions = "functions"
+
+[dev]
+command = "php -S localhost:8000 -t public/"
+port = 8000
+
+[[plugins]]
+package = "@netlify/plugin-php"
+
+[context.production.environment]
+PHP_VERSION = "8.1.2"

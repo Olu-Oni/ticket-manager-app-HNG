@@ -1,0 +1,14 @@
+# composer generated
+vendor/
+
+# Dependencies
+node_modules/
+
+# Build output
+public/css/output.css
+public/css/output.css.map
+
+# Logs
+npm-debug.log*
+*.log
+

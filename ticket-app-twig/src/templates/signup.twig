@@ -1,0 +1,203 @@
+{% extends 'components/layout.twig' %}
+
+{% block content %}
+    <main class="w-full bg-[var(--background)] place-content-center text-left grow">
+        <form id="signupForm" novalidate class="max-w-md my-4 mx-auto p-6 bg-transparent border-3 border-[var(--secondary)] rounded-xl shadow-lg">
+            <h2 class="text-2xl font-bold text-center mb-6">Create Your Account</h2>
+
+            <div class="space-y-1 mb-3">
+                <!-- User Name -->
+                <div class="form-group">
+                    <label for="userName" class="block text-sm font-medium text-[var(--primary-300)] mb-1">
+                        User Name <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="userName" required aria-describedby="error-userName"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+                        placeholder="john_doe">
+                    <span id="error-userName" class="error text-red-500 text-sm mt-1 block min-h-5" role="alert"></span>
+                </div>
+
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="fullName" class="block text-sm font-medium text-[var(--primary-300)] mb-1">
+                        Full Name <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="fullName" required aria-describedby="error-fullName"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+                        placeholder="John Doe">
+                    <span id="error-fullName" class="error text-red-500 text-sm mt-1 block min-h-5" role="alert"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="block text-sm font-medium text-[var(--primary-300)] mb-1">
+                        Email <span class="text-red-500">*</span>
+                    </label>
+                    <input type="email" id="email" required aria-describedby="error-email"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+                        placeholder="you@example.com">
+                    <span id="error-email" class="error text-red-500 text-sm mt-1 block min-h-5" role="alert"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password" class="block text-sm font-medium text-[var(--primary-300)] mb-1">
+                        Password <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" id="password" required aria-describedby="error-password"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+                        placeholder="••••">
+                    <span id="error-password" class="error text-red-500 text-sm mt-1 block min-h-5" role="alert"></span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword" class="block text-sm font-medium text-[var(--primary-300)] mb-1">
+                        Confirm Password <span class="text-red-500">*</span>
+                    </label>
+                    <input type="password" id="confirmPassword" required aria-describedby="error-confirmPassword"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition"
+                        placeholder="••••">
+                    <span id="error-confirmPassword" class="error text-red-500 text-sm mt-1 block min-h-5" role="alert"></span>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full btn-2">Create Account</button>
+
+            <p class="text-sm mt-4 text-center">
+                Already have an account? <a href="?route=auth/login" class="text-[var(--primary-light)] hover:text-[var(--accent-hover)]">Sign in</a>
+            </p>
+        </form>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('signupForm');
+                const userNameInput = document.getElementById('userName');
+                const fullNameInput = document.getElementById('fullName');
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                const errorUserName = document.getElementById('error-userName');
+                const errorFullName = document.getElementById('error-fullName');
+                const errorEmail = document.getElementById('error-email');
+                const errorPassword = document.getElementById('error-password');
+                const errorConfirmPassword = document.getElementById('error-confirmPassword');
+
+                let blankFormData = {
+                    userName: '',
+                    fullName: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                };
+                let formData = { ...blankFormData };
+                let errors = { ...blankFormData };
+
+                const handleChange = (field) => (e) => {
+                    formData[field] = e.target.value;
+                    errors[field] = '';
+                    document.getElementById(`error-${field}`).textContent = '';
+                };
+
+                const validate = () => {
+                    errors = { ...blankFormData };
+                    // User Name
+                    if (!formData.userName.trim()) {
+                        errors.userName = 'User Name is required';
+                    } else if (!/^[A-Za-z0-9_-]+$/.test(formData.userName)) {
+                        errors.userName = 'Only letters, numbers, underscores, and hyphens allowed';
+                    }
+                    // Full Name
+                    if (!formData.fullName.trim()) {
+                        errors.fullName = 'Full Name is required';
+                    } else if (!/^[A-Za-z\s]+$/.test(formData.fullName)) {
+                        errors.fullName = 'Only letters and spaces allowed';
+                    }
+                    // Email
+                    if (!formData.email.trim()) {
+                        errors.email = 'Email is required';
+                    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+                        errors.email = 'Invalid email address';
+                    }
+                    // Password
+                    if (!formData.password) {
+                        errors.password = 'Password is required';
+                    } else if (formData.password.length < 4) {
+                        errors.password = 'Password must be at least 4 characters';
+                    } else if (!/(?=.*[A-Za-z])(?=.*\d)/.test(formData.password)) {
+                        errors.password = 'Password must contain a letter and a number';
+                    }
+                    // Confirm Password
+                    if (formData.confirmPassword !== formData.password) {
+                        errors.confirmPassword = 'Passwords do not match';
+                    }
+                    errorUserName.textContent = errors.userName;
+                    errorFullName.textContent = errors.fullName;
+                    errorEmail.textContent = errors.email;
+                    errorPassword.textContent = errors.password;
+                    errorConfirmPassword.textContent = errors.confirmPassword;
+                    return Object.values(errors).every(err => !err);
+                };
+
+                const handleSubmit = (e) => {
+                    e.preventDefault();
+                    if (!validate()) {
+                        new Notyf({ duration: 5000 }).error('Sign-up unsuccessful!');
+                        return;
+                    }
+
+                    const user = {
+                        id: crypto.randomUUID(),
+                        fullName: formData.fullName,
+                        userName: formData.userName,
+                        email: formData.email,
+                        password: formData.password,
+                        createdAt: new Date().toISOString()
+                    };
+
+                    const existingUsers = JSON.parse(localStorage.getItem('ticketapp_users') || '[]');
+                    const emailExists = existingUsers.some(u => u.email === formData.email);
+                    if (emailExists) {
+                        new Notyf({ duration: 5000 }).error('Email already registered!');
+                        errors.email = 'This email is already in use';
+                        errorEmail.textContent = errors.email;
+                        return;
+                    }
+
+                    existingUsers.push(user);
+                    localStorage.setItem('ticketapp_users', JSON.stringify(existingUsers));
+
+                    console.log('Signup successful:', user);
+                    new Notyf({ duration: 5000 }).success('Account created successfully!');
+
+                    formData = { ...blankFormData }; // Reset to empty (though inputs are cleared manually)
+                    userNameInput.value = '';
+                    fullNameInput.value = '';
+                    emailInput.value = '';
+                    passwordInput.value = '';
+                    confirmPasswordInput.value = '';
+                    errors = { ...errors };
+                    errorUserName.textContent = '';
+                    errorFullName.textContent = '';
+                    errorEmail.textContent = '';
+                    errorPassword.textContent = '';
+                    errorConfirmPassword.textContent = '';
+
+                    setTimeout(() => {
+                        window.location.href = '?route=auth/login';
+                    }, 3000);
+                };
+
+                userNameInput.addEventListener('input', handleChange('userName'));
+                fullNameInput.addEventListener('input', handleChange('fullName'));
+                emailInput.addEventListener('input', handleChange('email'));
+                passwordInput.addEventListener('input', handleChange('password'));
+                confirmPasswordInput.addEventListener('input', handleChange('confirmPassword'));
+                form.addEventListener('submit', handleSubmit);
+
+                userNameInput.focus();
+            });
+        </script>
+    </main>
+{% endblock %}
