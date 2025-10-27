@@ -64,9 +64,7 @@ a:hover {
 
 h1 {
     color: var(--primary);
-    font-size: 3rem; /* text-5xl */
-    font-size: 4rem; /* md:text-6xl */
-    font-weight: 700;
+  @apply text-5xl md:text-6xl font-bold;
 }
 
 h2 {
