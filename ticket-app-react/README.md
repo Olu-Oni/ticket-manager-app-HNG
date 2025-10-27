@@ -1,138 +1,96 @@
 # Ticket Management App - React Version
 
-A modern, responsive ticket management system built with React, Vite, and Tailwind CSS. This is part of a multi-framework implementation showcasing the same application across React, Vue.js, and Vanilla JavaScript.
+A modern, responsive ticket management system built with React, Vite, and Tailwind CSS.
 
 ## 🚀 Live Demo
 
 [View Live Demo](https://tickets-please-react.netlify.app/)
 
-## 🔗 Related Implementations
+## 🔗 Other Implementations
 
 - [Vue.js Version](../ticket-app-vue)
 - [Twig Version](../ticket-app-twig)
-- [Shared Assets](../shared-assets)
+- [Overview](../README.md)
 
 ## 📦 Tech Stack
 
-- **Framework:** React ^19.1.1
+- **Framework:** React 19.1
 - **Build Tool:** Vite
 - **Styling:** Tailwind CSS
 - **Routing:** React Router DOM
-- **Notifications:**  Notyf
-- **State Management:** React Hooks (useState, useEffect)
+- **State:** React Hooks (useState, useEffect)
+- **Notifications:** Notyf
 
-## ✨ Features
-
-- 🎨 Modern, responsive landing page with wavy hero section
-- 🔐 Complete authentication system (Login/Signup)
-- 📊 Dashboard with ticket statistics
-- ✏️ Full CRUD operations for ticket management
-- ✅ Form validation with inline error messages
-- 🎯 Status-based ticket filtering (Open, In Progress, Closed)
-- 🔒 Protected routes with authentication guards
-- 📱 Mobile-first responsive design
-- ♿ Accessibility compliant (ARIA labels, semantic HTML)
-
-## 🛠️ Installation & Setup
+## 🛠️ Local Development
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js 16+
 - npm or yarn
 
-### Steps
+### Setup
 
-1. **Clone or navigate to the project:**
-   ```bash
-   cd ticket-app-react
-   ```
+```bash
+# Install dependencies
+npm install
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+# Start development server
+npm run dev
 
-3. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+# Build for production
+npm run build
 
-4. **Open your browser:**
-   ```
-   http://localhost:5173
-   ```
+# Preview production build
+npm run preview
 
-## 📝 Available Scripts
+# Run linter
+npm run lint
+```
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run ESLint |
-
-## 👤 Test Credentials
-
-Use these credentials to test the application:
-
-- **Email:** demo@test.com
-- **Password:** password123
-
-Alternatively, create a new account through the signup page.
+Visit `http://localhost:5173`
 
 ## 📁 Project Structure
 
 ```
 ticket-app-react/
-├── public/
-│   └── assets/           # Shared assets (SVGs, images)
 ├── src/
 │   ├── pages/            # Page components
-│   │   ├── LandingPage.jsx
-│   │   ├── Login.jsx
-│   │   ├── Signup.jsx
-│   │   ├── Dashboard.jsx
-│   │   └── Tickets.jsx
 │   ├── components/       # Reusable components
-│   │   ├── Layout.jsx
-│   │   └── Header.jsx
-│   ├── utils/            # Utility functions
-│   │   └── auth.js       # Authentication logic
-│   ├── App.jsx           # Main app component
-│   └── main.jsx          # Entry point
-├── tailwind.config.js    # Tailwind configuration
+│   ├── utils/            # Auth & utilities
+│   ├── App.jsx
+│   └── main.jsx
+├── public/
 └── package.json
 ```
 
-## 🎯 Key Components
+## 🎯 Key Features
 
 ### Authentication (`src/utils/auth.js`)
-- `login(email, password)` - Authenticates user and creates session
-- `logout()` - Clears session
-- `isAuthenticated()` - Checks authentication status
-- `getSession()` - Retrieves current session
+- Session management with `localStorage`
+- Protected route guards
+- Login/logout functionality
 
 ### Pages
-- **Landing Page** - Hero section with wavy background, features, and CTAs
-- **Login/Signup** - Form validation with error handling
-- **Dashboard** - Statistics overview and quick actions
-- **Tickets** - Full CRUD interface with modal forms
+- **LandingPage.jsx** - Hero section with features
+- **Login.jsx/Signup.jsx** - Form validation
+- **Dashboard.jsx** - Statistics overview
+- **Tickets.jsx** - Full CRUD interface
 
-## 🔐 Authentication Flow
+## 🚀 Deployment
 
-1. User signs up → Data stored in `localStorage` under `ticketapp_users`
-2. User logs in → Session created in `localStorage` under `ticketapp_session`
-3. Protected routes check for valid session
-4. Logout clears session and redirects to landing page
+Deployed on Netlify with automatic builds from `main` branch.
 
-## 📊 Data Storage
+### Deploy Your Own
 
-All data is stored in browser's `localStorage`:
-
-- `ticketapp_users` - Array of registered users
-- `ticketapp_session` - Current user session
-- `ticketapp_tickets` - Array of all tickets
+1. Fork this repo
+2. Connect to Netlify
+3. Set build command: `npm run build`
+4. Set publish directory: `dist`
 
 ## 👨‍💻 Author
 
 Oni Oluwole
+
+---
+
+For general features and comparison with other implementations, see the [main README](../README.md).

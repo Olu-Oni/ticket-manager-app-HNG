@@ -1,140 +1,93 @@
 # Ticket Management App - Vue.js Version
 
-A modern, responsive ticket management system built with Vue 3, Vite, and Tailwind CSS. This is part of a multi-framework implementation showcasing the same application across React, Vue.js, and Vanilla JavaScript.
+A modern, responsive ticket management system built with Vue 3, Vite, and Tailwind CSS.
 
 ## 🚀 Live Demo
 
 [View Live Demo](https://tickets-please-vue.netlify.app/)
 
-## 🔗 Related Implementations
+## 🔗 Other Implementations
 
 - [React Version](../ticket-app-react)
 - [Twig Version](../ticket-app-twig)
-- [Shared Assets](../shared-assets)
+- [Overview](../README.md)
 
 ## 📦 Tech Stack
 
-- **Framework:** Vue ^3.5.13
+- **Framework:** Vue 3.5
 - **Build Tool:** Vite
 - **Styling:** Tailwind CSS
 - **Routing:** Vue Router
-- **State Management:** Vue Reactivity (ref, reactive)
-- **Script Style:** `<script setup>` syntax
+- **State:** Vue Reactivity (ref, reactive)
+- **Notifications:** Notyf
 
-## ✨ Features
-
-- 🎨 Modern, responsive landing page with wavy hero section
-- 🔐 Complete authentication system (Login/Signup)
-- 📊 Dashboard with ticket statistics
-- ✏️ Full CRUD operations for ticket management
-- ✅ Form validation with inline error messages
-- 🎯 Status-based ticket filtering (Open, In Progress, Closed)
-- 🔒 Protected routes with authentication guards
-- 📱 Mobile-first responsive design
-- ♿ Accessibility compliant (ARIA labels, semantic HTML)
-
-## 🛠️ Installation & Setup
+## 🛠️ Local Development
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js 16+
 - npm or yarn
 
-### Steps
+### Setup
 
-1. **Clone or navigate to the project:**
-   ```bash
-   cd ticket-app-vue
-   ```
+```bash
+# Install dependencies
+npm install
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+# Start development server
+npm run dev
 
-3. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+# Build for production
+npm run build
 
-4. **Open your browser:**
-   ```
-   http://localhost:5173
-   ```
+# Preview production build
+npm run preview
+```
 
-## 📝 Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-
-## 👤 Test Credentials
-
-Use these credentials to test the application:
-
-- **Email:** demo@test.com
-- **Password:** password123
-
-Alternatively, create a new account through the signup page.
+Visit `http://localhost:5173`
 
 ## 📁 Project Structure
 
 ```
 ticket-app-vue/
-├── public/
-│   └── assets/           # Shared assets (SVGs, images)
 ├── src/
 │   ├── views/            # Page components
-│   │   ├── Landing.vue
-│   │   ├── Login.vue
-│   │   ├── Signup.vue
-│   │   ├── Dashboard.vue
-│   │   └── Tickets.vue
 │   ├── components/       # Reusable components
-│   │   ├── Layout.vue
-│   │   └── Header.vue
-│   ├── router/           # Router configuration
-│   │   └── index.js
-│   ├── utils/            # Utility functions
-│   │   └── auth.js       # Authentication logic
-│   ├── App.vue           # Root component
-│   ├── main.js           # Entry point
-│   └── style.css         # Global styles
-├── tailwind.config.js    # Tailwind configuration
+│   ├── router/           # Vue Router config
+│   ├── utils/            # Auth & utilities
+│   └── App.vue
+├── public/
 └── package.json
 ```
 
-## 🎯 Key Components
+## 🎯 Key Features
 
 ### Authentication (`src/utils/auth.js`)
-- `login(email, password)` - Authenticates user and creates session
-- `logout()` - Clears session
-- `isAuthenticated()` - Checks authentication status
-- `getSession()` - Retrieves current session
+- Session management with `localStorage`
+- Route guards for protected pages
+- Login/logout functionality
 
 ### Pages
-- **Landing.vue** - Hero section with wavy background, features, and CTAs
-- **Login.vue/Signup.vue** - Form validation with error handling
-- **Dashboard.vue** - Statistics overview and quick actions
-- **Tickets.vue** - Full CRUD interface with modal forms
+- **Landing.vue** - Hero section with features
+- **Login.vue/Signup.vue** - Form validation
+- **Dashboard.vue** - Statistics overview
+- **Tickets.vue** - Full CRUD interface
 
-## 🔐 Authentication Flow
+## 🚀 Deployment
 
-1. User signs up → Data stored in `localStorage` under `ticketapp_users`
-2. User logs in → Session created in `localStorage` under `ticketapp_session`
-3. Protected routes check for valid session
-4. Logout clears session and redirects to landing page
+Deployed on Netlify with automatic builds from `main` branch.
 
-## 📊 Data Storage
+### Deploy Your Own
 
-All data is stored in browser's `localStorage`:
-
-- `ticketapp_users` - Array of registered users
-- `ticketapp_session` - Current user session
-- `ticketapp_tickets` - Array of all tickets
+1. Fork this repo
+2. Connect to Netlify
+3. Set build command: `npm run build`
+4. Set publish directory: `dist`
 
 ## 👨‍💻 Author
 
 Oni Oluwole
+
+---
+
+For general features and comparison with other implementations, see the [main README](../README.md).
