@@ -4,8 +4,8 @@ A modern, responsive ticket management system showcasing the same application bu
 
 ## 🚀 Live Demos
 
-- **Vue.js:** [tickets-please-vue.netlify.app](https://tickets-please-vue.netlify.app/)
-- **React:** [tickets-please-react.netlify.app](https://tickets-please-react.netlify.app/)
+- **Vue.js:** [tickets-please-vue.netlify.app](https://tickets-please-vue.vercel.app/)
+- **React:** [tickets-please-react.netlify.app](https://tickets-please-react.vercel.app/)
 - **Twig:** [tickets-please-twig.render.com](https://tickets-please-twig.onrender.com/)
 
 ## 📦 Implementations
