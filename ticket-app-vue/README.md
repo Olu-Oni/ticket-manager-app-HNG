@@ -4,7 +4,7 @@ A modern, responsive ticket management system built with Vue 3, Vite, and Tailwi
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://tickets-please-vue.netlify.app/)
+[View Live Demo](https://tickets-please-vue.vercel.app/)
 
 ## 🔗 Other Implementations
 
