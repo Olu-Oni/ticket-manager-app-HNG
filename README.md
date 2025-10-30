@@ -4,8 +4,8 @@ A modern, responsive ticket management system showcasing the same application bu
 
 ## 🚀 Live Demos
 
-- **Vue.js:** [tickets-please-vue.netlify.app](https://tickets-please-vue.vercel.app/)
-- **React:** [tickets-please-react.netlify.app](https://tickets-please-react.vercel.app/)
+- **Vue.js:** [tickets-please-vue.ercel.app](https://tickets-please-vue.vercel.app/)
+- **React:** [tickets-please-react.vercel.app](https://tickets-please-react.vercel.app/)
 - **Twig:** [tickets-please-twig.render.com](https://tickets-please-twig.onrender.com/)
 
 ## 📦 Implementations
@@ -56,8 +56,8 @@ This monorepo demonstrates:
 
 All versions use the same test credentials:
 
-- **Email:** demo@test.com
-- **Password:** password123
+- **Email:** demo@test.com  
+- **Password:** testpassword321
 
 Or create a new account through any signup page.
 
