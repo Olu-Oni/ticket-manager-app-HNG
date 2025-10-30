@@ -4,7 +4,7 @@ A modern, responsive ticket management system built with React, Vite, and Tailwi
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://tickets-please-react.netlify.app/)
+[View Live Demo](https://tickets-please-react.vercel.app/)
 
 ## 🔗 Other Implementations
 
