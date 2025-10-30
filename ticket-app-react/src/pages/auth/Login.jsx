@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../utils/auth";
 
 // notification instance
@@ -164,12 +164,12 @@ const Login = () => {
 
         <p className="text-sm mt-4 text-center">
           Don't have an account?{" "}
-          <a
-            href="/auth/signup"
+          <Link
+            to="/auth/signup"
             className="hover:underline font-medium text-nowrap"
           >
             create a new account
-          </a>
+          </Link>
         </p>
       </form>
     </main>

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // notification instance
 const notyf = new Notyf({ duration: 5000 });
@@ -309,9 +309,9 @@ export default function SignupForm() {
 
         <p className="text-sm mt-4 text-center">
           Already have an account?{" "}
-          <a href="/auth/login" className="hover:underline font-medium">
+          <Link to="/auth/login" className="hover:underline font-medium">
             Sign in
-          </a>
+          </Link>
         </p>
       </form>
     </main>
